@@ -1,5 +1,6 @@
 package med.voll.api.paciente;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -21,9 +22,11 @@ public class Paciente
     private String nome;
     private String email;
     private String cpf;
+
     private String telefone;
 
     @Embedded
+    //@JsonIgnore - dados não retornado no get
     private Endereco endereco;
 
     public Paciente(DadosCadastroPaciente dados)

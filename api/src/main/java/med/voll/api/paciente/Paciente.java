@@ -28,14 +28,34 @@ public class Paciente
     @Embedded
     //@JsonIgnore - dados não retornado no get
     private Endereco endereco;
-
+    private Boolean ativo;
     public Paciente(DadosCadastroPaciente dados)
     {
+        this.ativo = true;
         this.nome = dados.nome();
         this.email = dados.email();
         this.cpf = dados.cpf();
         this.telefone = dados.telefone();
 
         this.endereco = new Endereco(dados.endereco());
+    }
+
+    public void atualizarInformacoes(DadosAtualizarPaciente dados) {
+        if(dados.nome() != null){
+            this.nome = dados.nome();
+        }
+        if(dados.telefone() != null){
+            this.telefone = dados.telefone();
+        }
+        if(dados.endereco() != null){
+            this.endereco = new Endereco(dados.endereco());
+        }
+        if(dados.ativo() != null){
+            this.ativo = dados.ativo();
+        }
+    }
+
+    public void excluir() {
+        this.ativo = false;
     }
 }
